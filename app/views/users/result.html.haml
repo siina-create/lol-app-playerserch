@@ -1,7 +1,22 @@
 .result
-  結果画面
-  = @kekka_data
-.body
-  = @summoner_name
+  .header
+    結果画面
+  .return-btn
+  %p= link_to 'トップへ戻る', root_path
+  .body
+    サモナー名:
+    = @summoner_name
+    = image_tag "#{@icon}.png", size: "100x100", alt: "アイコン画像"
+    = @icon
+  .senseki
+    = @win
+    勝
+    = @lose
+    敗
+    ランク:
+    = @rank
+    
+
+
 
 

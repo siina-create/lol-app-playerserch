@@ -1,0 +1,32 @@
+.main{
+  //background-image: url(hosizora.jpg);
+  background-color: blanchedalmond;
+  background-size: cover;
+  height: 100vh;
+  z-index: 0;
+  position: relative;
+}
+.main-header{
+  background-color: orange;
+  z-index: 1;
+  color: black;
+  font-size: 40px;
+  text-align: center;
+  height: 100px;
+}
+.main-form{
+  position: absolute;
+  top:  0;
+  bottom:  0;
+  left:  0; 
+  right:  0;
+  width:  300px;
+  height: 80px;
+  margin: auto;
+}
+input.form { 
+  width: 200px;
+}
+input.btn{
+  height: 40px;
+}
