@@ -1,9 +1,11 @@
 .main
   .main-header
     プレイヤーを検索
+    
   .main-form
+    = flash[:nameerror]
     = form_tag({controller: 'users',action: 'result'}) do |f|                                     
-      = text_field_tag :name,'',class: 'form', placeholder: 'サモナー名を入力',required:""
+      = text_field_tag :name,'',class: 'form', placeholder: 'プレイヤー名を入力',required:""#required:""で入力されていないとボタンを押せない
       = submit_tag "検索する",class: 'btn'
 
 

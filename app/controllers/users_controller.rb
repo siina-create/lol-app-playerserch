@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  API_KEY = 'RGAPI-edea006b-ed33-4f76-a347-41f71ad6ea9a' #取得したAPIKEY
+  API_KEY = 'RGAPI-1a0a2d5f-48fe-46ae-b32d-267a5c98b91a' #取得したAPIKEY
   require 'net/http'
   require 'uri'
   require 'json'
@@ -9,33 +9,48 @@ class UsersController < ApplicationController
   def result
     @input = ActiveSupport::OrderedOptions.new
     @input = serch_params[:name]
+    #結果画面で再読み込みすると入力フォームの値がなくなるのでトップへ戻るビュー作ったらコメントアウト消す
     if @input == nil
-      redirect_to root_path
-    else
-    #@input = "ぐんぐん太郎"#APIのテスト用にサモナー名を入力
-    @kekka_data = serch(@input)#id.accountid,name,summonerLevel,revisionDate,profilelconid,puuid
-    
-    #@kekka_dataから必要なデータを取得
-    @summoner_name = @kekka_data["name"]#名前取得
-    @icon = @kekka_data["profileIconId"]
-    @account_id = @kekka_data["accountId"]#アカウントID取得 検索に使う
-    @id = @kekka_data["id"]#id取得 検索に使う
-    #idから勝敗やrankを取得
-    @rank_kekka_data = rank_serch(@id)
-    @rank_kekka_data = @rank_kekka_data[0]
-
-    
-    @win = @rank_kekka_data["wins"]
-    @lose = @rank_kekka_data["losses"]
-    @rank = @rank_kekka_data["tier"]
-    #account_idから戦績を取得
-    senseki = senseki_serch(@account_id)
-    senseki_hairetu = senseki["matches"]
+      redirect_to root_path and return
     end
     
-    
+    @kekka_data = serch(@input)#id.accountid,name,summonerLevel,revisionDate,profilelconid,puuid
 
+    #検索したプレイヤーの名前や各idを変数に割り振る。存在しないプレイヤー等、エラーが出た場合は検索ページへ戻る
+    if @kekka_data["name"]
+      #@kekka_dataから必要なデータを取得
+      @summoner_name = @kekka_data["name"]#名前取得
+      @icon = @kekka_data["profileIconId"]
+      @account_id = @kekka_data["accountId"]#アカウントID取得 検索に使う
+      @id = @kekka_data["id"]#id取得 検索に使う
+      
+      #idから勝敗やrankを取得
+      @rank_kekka_data = rank_serch(@id)
+      @rank_kekka_data = @rank_kekka_data[0]
+
+      else
+      flash[:nameerror] = '名前を再入力してください'
+      redirect_to root_path and return 
+      
+    end
+
+    #勝敗とランクを持ってくる無しなら０を入れる
+    if @rank_kekka_data == nil
+      @win = 0
+      @lose = 0
+      @rank = "unrank"
+      
+      else
+      @win = @rank_kekka_data["wins"]
+      @lose = @rank_kekka_data["losses"]
+      @rank = @rank_kekka_data["tier"]
+      #account_idから戦績を取得
+      senseki = senseki_serch(@account_id)
+      ＠senseki_hairetu = senseki["matches"]
+    end
+    
   end
+    
 
 
   private

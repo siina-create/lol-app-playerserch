@@ -4,6 +4,25 @@
   height: 100vh;
   z-index: 0;
 }
-.body{
+.player{
+  background-color: linen;
+  border: inset orange 10px;
+  text-align: center;
   font-size: 20px;
+  width: 200px;
+  &-icon{
+    height: 200px;
+  }
+  &-name{
+    border: solid 1px;
+
+  }
+  &-rank{
+    border: solid 1px;
+
+  }
+  &-senseki{
+    border-style: solid;
+    border-width: 0px 1px 1px;
+  }
 }
