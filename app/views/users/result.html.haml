@@ -13,7 +13,42 @@
       = image_tag "icons/#{@icon}.png", size: "200x200", alt: "アイコン画像"
     .player-rank
       /ランク
-      = @rank
+      = image_tag "ranked-emblems/#{@rank}.png", size: "20x20", alt: "ランク画像"
+      %a{:href => "#"}
+        = @rank
+        %span.remark
+          = image_tag "ranked-emblems/CHALLENGER.png", size: "20x20", alt: "ランク画像"
+          CHALLENGER
+          %br
+          = image_tag "ranked-emblems/GRANDMASTER.png", size: "20x20", alt: "ランク画像"
+          GRANDMASTER
+          %br
+          = image_tag "ranked-emblems/MASTER.png", size: "20x20", alt: "ランク画像"
+          MASTER
+          %br
+          = image_tag "ranked-emblems/DIAMOND.png", size: "20x20", alt: "ランク画像"
+          DIAMOND
+          %br
+          = image_tag "ranked-emblems/PLATINUM.png", size: "20x20", alt: "ランク画像"
+          PLATINUM
+          %br
+          = image_tag "ranked-emblems/GOLD.png", size: "20x20", alt: "ランク画像"
+          GOLD
+          %br
+          = image_tag "ranked-emblems/SILVER.png", size: "20x20", alt: "ランク画像"
+          SILVER
+          %br
+          = image_tag "ranked-emblems/BRONZE.png", size: "20x20", alt: "ランク画像"
+          BRONZE
+          %br
+          = image_tag "ranked-emblems/IRON.png", size: "20x20", alt: "ランク画像"
+          IRON
+          %br
+          = image_tag "ranked-emblems/UNRANKED.png", size: "20x20", alt: "ランク画像"
+          UNRANKED
+
+
+
     .player-senseki
       /1勝
       = @win
@@ -21,7 +56,7 @@
       /1敗
       = @lose
       敗
-      
+    
     
 
 

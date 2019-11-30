@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     if @rank_kekka_data == nil
       @win = 0
       @lose = 0
-      @rank = "unrank"
+      @rank = "UNRANKED"
       
       else
       @win = @rank_kekka_data["wins"]
@@ -46,7 +46,9 @@ class UsersController < ApplicationController
       @rank = @rank_kekka_data["tier"]
       #account_idから戦績を取得
       senseki = senseki_serch(@account_id)
-      ＠senseki_hairetu = senseki["matches"]
+      senseki_hairetu = senseki["matches"]
+      @senseki_hairetu = senseki_hairetu[0]
+      @last_champion = @senseki_hairetu["champion"]
     end
     
   end
