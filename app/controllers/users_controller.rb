@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  API_KEY = 'RGAPI-1a0a2d5f-48fe-46ae-b32d-267a5c98b91a' #取得したAPIKEY
+  API_KEY = ENV["API_KEY"] #取得したAPIKEY
   require 'net/http'
   require 'uri'
   require 'json'
