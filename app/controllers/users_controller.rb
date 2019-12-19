@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def result
     @input = ActiveSupport::OrderedOptions.new
     @input = serch_params[:name]
-    #結果画面で再読み込みすると入力フォームの値がなくなるのでトップへ戻るビュー作ったらコメントアウト消す
+    #結果画面で再読み込みすると入力フォームの値がなくなるのでトップへ戻る
     if @input == nil
       redirect_to root_path and return
     end
