@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  API_KEY = ENV["API_KEY"] #取得したAPIKEY
+API_KEY = ENV["API_KEY"] #取得したAPIKEY
   require 'net/http'
   require 'uri'
   require 'json'
@@ -29,8 +29,8 @@ class UsersController < ApplicationController
       @rank_kekka_data = @rank_kekka_data[0]
 
       else
-      flash[:nameerror] = '名前を再入力してください'
-      redirect_to root_path and return 
+      #flash[:nameerror] = '名前を再入力してください'
+      #redirect_to root_path and return 
       
     end
 
