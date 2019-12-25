@@ -1,12 +1,14 @@
 .main
-  .main-header
-    プレイヤーを検索
+  .main__header
     
-  .main-form
-    = flash[:nameerror]
-    = form_tag({controller: 'users',action: 'result'}) do |f|                                     
-      = text_field_tag :name,'',class: 'form', placeholder: 'プレイヤー名を入力',required:""#required:""で入力されていないとボタンを押せない
-      = submit_tag "検索する",class: 'btn'
+    player-serch
+  .main__content
+    .main__content--form
+      .error-message
+        = flash[:nameerror]
+      = form_tag({controller: 'users',action: 'result'}) do |f|                                     
+        = text_field_tag :name,'',class: 'form', placeholder: 'プレイヤー名を入力',required:""#required:""で入力されていないとボタンを押せない
+        = submit_tag "検索する",class: 'btn'
 
 
     

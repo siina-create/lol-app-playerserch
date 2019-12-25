@@ -7,14 +7,14 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
   end
 
   def result
-    @input = ActiveSupport::OrderedOptions.new
+    #フォームで入れた名前
     @input = serch_params[:name]
     #結果画面で再読み込みすると入力フォームの値がなくなるのでトップへ戻る
     if @input == nil
       redirect_to root_path and return
     end
-    
-    @kekka_data = serch(@input)#id.accountid,name,summonerLevel,revisionDate,profilelconid,puuid
+    #id.accountid,name,summonerLevel,revisionDate,profilelconid,puuid
+    @kekka_data = serch(@input)
 
     #検索したプレイヤーの名前や各idを変数に割り振る。存在しないプレイヤー等、エラーが出た場合は検索ページへ戻る
     if @kekka_data["name"]
@@ -29,8 +29,8 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       @rank_kekka_data = @rank_kekka_data[0]
 
       else
-      #flash[:nameerror] = '名前を再入力してください'
-      #redirect_to root_path and return 
+      flash[:nameerror] = '名前を再入力してください'
+      redirect_to root_path and return 
       
     end
 
@@ -48,7 +48,20 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       senseki = senseki_serch(@account_id)
       senseki_hairetu = senseki["matches"]
       @senseki_hairetu = senseki_hairetu[0]
-      @last_champion = @senseki_hairetu["champion"]
+
+      #最後使ったチャンピオンのkey
+      last_champion = @senseki_hairetu["champion"]
+
+      #全てのチャンピオンの全てのデータ
+      @all = dataget()
+      data = @all["data"]
+
+      
+      #keyとチャンピオン名の対応リスト
+      keydata = keyname(data)
+      #last_championを対応する名前にする
+      @last_champion_name = keydata["#{last_champion}"] 
+      
     end
     
   end
@@ -81,6 +94,22 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       hairetu << hash[:champion]
     end
   end
+  #datadragonにアクセス
+  def dataget
+    dragon_uri = URI.parse URI.encode("http://ddragon.leagueoflegends.com/cdn/9.3.1/data/ja_JP/champion.json")
+    return_data = Net::HTTP.get(dragon_uri)
+    rank_data = JSON.parse(return_data)
+  end
+
+  def keyname(data)
+    hash = {}
+    data.each {|key,value|
+    num = value["key"]
+    hash[num] = value ["id"]}
+    return hash
+    
+  end
+
 
 
 

@@ -9,7 +9,6 @@
       /名前
       = @summoner_name
     .player-icon
-      /= image_tag "icons/4446.png", size: "200x200",class:"icon-image"
       = image_tag "icons/#{@icon}.png", size: "200x200", alt: "アイコン画像"
     .player-rank
       /ランク
@@ -50,12 +49,15 @@
 
 
     .player-senseki
-      /1勝
+      /勝利数
       = @win
       勝
-      /1敗
+      /敗北数
       = @lose
       敗
+  .champion
+    最後に使ったチャンピオン
+    =@last_champion_name
     
     
 
