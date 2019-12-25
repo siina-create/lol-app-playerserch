@@ -21,6 +21,7 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       #@kekka_dataから必要なデータを取得
       @summoner_name = @kekka_data["name"]#名前取得
       @icon = @kekka_data["profileIconId"]
+
       @account_id = @kekka_data["accountId"]#アカウントID取得 検索に使う
       @id = @kekka_data["id"]#id取得 検索に使う
       
@@ -48,7 +49,7 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       senseki = senseki_serch(@account_id)
       senseki_hairetu = senseki["matches"]
       @senseki_hairetu = senseki_hairetu[0]
-
+      
       #最後使ったチャンピオンのkey
       last_champion = @senseki_hairetu["champion"]
 
@@ -109,11 +110,6 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
     return hash
     
   end
-
-
-
-
-
   
 
   def serch_params#入力フォームで入力されたものを取得
