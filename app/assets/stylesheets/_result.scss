@@ -1,8 +1,16 @@
 .result{
   background-image: url(champion/Poppy_0.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   z-index: 0;
+}
+a:link, a:visited, a:hover, a:active {
+  color: red;
+}
+.data{
+  display: flex;
+  justify-content: center;
 }
 .player{
   background-color: linen;
@@ -47,3 +55,27 @@
   background-color: #fff;
   display:inline-block
 }
+.match{
+  background-color: lemonchiffon;
+  display:inline-block;
+  text-align: center;
+  &__title{
+    display: flex;
+    
+    &--team1{
+      background-color: dodgerblue;
+      height: 380px;
+      text-align: left;
+    }
+    &--team2{
+      background-color: orangered;
+      height: 380px;
+      text-align: left;
+      
+    }
+  }
+}
+li {
+  margin-bottom: 15px;
+  }
+  

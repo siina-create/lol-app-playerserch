@@ -37,6 +37,8 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
 
     #勝敗とランクを持ってくる無しなら０を入れる
     if @rank_kekka_data == nil
+      flash[:nameerror] = '試合データがありません'
+      redirect_to root_path and return 
       @win = 0
       @lose = 0
       @rank = "UNRANKED"
@@ -45,30 +47,36 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       @win = @rank_kekka_data["wins"]
       @lose = @rank_kekka_data["losses"]
       @rank = @rank_kekka_data["tier"]
-      #account_idから戦績を取得
-      senseki = senseki_serch(@account_id)
-      senseki_hairetu = senseki["matches"]
-      @senseki_hairetu = senseki_hairetu[0]
-      
-      #最後使ったチャンピオンのkey
-      last_champion = @senseki_hairetu["champion"]
 
+      #account_idから戦績を取得
+      @senseki = senseki_serch(@account_id)
+      #最後の試合のgameidを取得
+      lastgameid = @senseki["matches"][0]["gameId"]
+      @lastgamedata = gameget(lastgameid)
+      @winlose =@lastgamedata["teams"][0]["win"]
+      participantIdentities = @lastgamedata["participantIdentities"]
+      #@nameicon = teamplayerget(participantIdentities)
+      @playerdata = teamplayerget(@lastgamedata)
+      #["participantIdentities"]#[0]["player"]["summonerName"]
+
+      #最後使ったチャンピオンのkeyを取得
+      last_champion = @senseki["matches"][0]["champion"]
+      
       #全てのチャンピオンの全てのデータ
       @all = dataget()
       data = @all["data"]
-
-      
       #keyとチャンピオン名の対応リスト
       keydata = keyname(data)
-      #last_championを対応する名前にする
+      #last_championのkeyを対応する名前にする
       @last_champion_name = keydata["#{last_champion}"] 
-      
+      @keydata = keydata
     end
+    
     
   end
     
 
-
+  #APIで特定のデータを持ってくる
   private
   def serch(input)#フォームで入力した名前からidなどの情報を取得
     uri = URI.parse URI.encode("https://jp1.api.riotgames.com/lol/summoner/v4/summoners/by-name/#{input}?api_key=#{API_KEY}")
@@ -89,12 +97,26 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
     rank_data = JSON.parse(rank_return_data)
   end
 
-  def hashchamp(senseki_hairetu)
-    hairetu = []
-    senseki_hairetu.each do |hash|
-      hairetu << hash[:champion]
-    end
+  def gameget(lastgameid)
+    game_uri = URI.parse URI.encode("https://jp1.api.riotgames.com/lol/match/v4/matches/#{lastgameid}?api_key=#{API_KEY}")
+    game_return_data = Net::HTTP.get(game_uri)
+    game_data = JSON.parse(game_return_data)
   end
+
+  def teamplayerget(lastgamedata)
+    i=0
+    hash = {}
+    10.times do
+      hash["summonerName#{i}"] = lastgamedata["participantIdentities"][i]["player"]["summonerName"]
+      hash["plofileicon#{i}"] = lastgamedata["participantIdentities"][i]["player"]["profileIcon"]
+      hash["teamId#{i}"] = lastgamedata["participants"][i]["teamId"]
+      hash["participantId#{i}"] = lastgamedata["participants"][i]["participantId"]
+      hash["championId#{i}"] = lastgamedata["participants"][i]["championId"]
+      i+=1
+    end
+    return hash
+  end
+    
   #datadragonにアクセス
   def dataget
     dragon_uri = URI.parse URI.encode("http://ddragon.leagueoflegends.com/cdn/9.3.1/data/ja_JP/champion.json")
@@ -102,6 +124,7 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
     rank_data = JSON.parse(return_data)
   end
 
+  #keyとチャンピオン名を関連付けるハッシュをつくる
   def keyname(data)
     hash = {}
     data.each {|key,value|
