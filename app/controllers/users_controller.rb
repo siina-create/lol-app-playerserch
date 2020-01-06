@@ -52,12 +52,12 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       @senseki = senseki_serch(@account_id)
       #最後の試合のgameidを取得
       lastgameid = @senseki["matches"][0]["gameId"]
+      #最後の試合のデータを取得
       @lastgamedata = gameget(lastgameid)
+      #最後の試合の勝ち負けを取得
       @winlose =@lastgamedata["teams"][0]["win"]
-      participantIdentities = @lastgamedata["participantIdentities"]
-      #@nameicon = teamplayerget(participantIdentities)
+
       @playerdata = teamplayerget(@lastgamedata)
-      #["participantIdentities"]#[0]["player"]["summonerName"]
 
       #最後使ったチャンピオンのkeyを取得
       last_champion = @senseki["matches"][0]["champion"]
@@ -67,9 +67,10 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
       data = @all["data"]
       #keyとチャンピオン名の対応リスト
       keydata = keyname(data)
+      @keydata = keydata
       #last_championのkeyを対応する名前にする
       @last_champion_name = keydata["#{last_champion}"] 
-      @keydata = keydata
+      
     end
     
     
