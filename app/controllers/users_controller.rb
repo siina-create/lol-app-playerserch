@@ -120,7 +120,7 @@ API_KEY = ENV["API_KEY"] #取得したAPIKEY
     
   #datadragonにアクセス
   def dataget
-    dragon_uri = URI.parse URI.encode("http://ddragon.leagueoflegends.com/cdn/9.3.1/data/ja_JP/champion.json")
+    dragon_uri = URI.parse URI.encode("http://ddragon.leagueoflegends.com/cdn/10.4.1/data/ja_JP/champion.json")
     return_data = Net::HTTP.get(dragon_uri)
     rank_data = JSON.parse(return_data)
   end
