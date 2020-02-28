@@ -13,7 +13,6 @@ haml、css（トップ画面、結果画面の見た目）
 1.https://poppyhammer.herokuapp.com にアクセスしてください  
 2.トップ画面が表示されるので中央の検索欄にleague of legenのアカウント名を入力して「検索する」を押してください
 例として isurugiと入力してみてください（日本のトッププレイヤーです）
-![Uploading スクリーンショット 2020-02-28 12.15.10.png…]()
 <img width="1300" alt="スクリーンショット 2020-02-27 12 50 01" src="https://user-images.githubusercontent.com/57381866/75410660-f24b2e80-595f-11ea-9b37-fe3a4b8fae63.png">
 
 3.戦績やプロフィールが表示されます
