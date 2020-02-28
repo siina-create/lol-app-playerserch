@@ -12,7 +12,7 @@
         /= @lastgamedata
         = @winlose
       .player-icon
-        %img{alt: "使用チャンピオンがありません", border: "0", height: "", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/profileicon/#{@icon}.png", width: "200px"}/
+        %img{alt: "新アイコン", border: "0", height: "", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/profileicon/#{@icon}.png", width: "200px"}/
       .player-rank
         /ランク
         = image_tag "ranked-emblems/#{@rank}.png", size: "20x20", alt: "ランク画像"
@@ -61,7 +61,7 @@
       .champion
         最後に使ったのは...
         =@last_champion_name
-        %img{alt: "アイコン画像", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@last_champion_name}.png"}/
+        %img{alt: "アイコン画像", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@last_champion_name}.png"}/
     .match
       最後の試合
       .match__title
@@ -74,23 +74,23 @@
             lose
           %ul
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId0"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId0"]}"]}.png"}/
             = @playerdata["summonerName0"]
             = @keydata["#{@playerdata["championId0"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId1"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId1"]}"]}.png"}/
             = @playerdata["summonerName1"]
             = @keydata["#{@playerdata["championId1"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId2"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId2"]}"]}.png"}/
             = @playerdata["summonerName2"]
             = @keydata["#{@playerdata["championId2"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId3"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId3"]}"]}.png"}/
             = @playerdata["summonerName3"]
             = @keydata["#{@playerdata["championId3"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId4"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId4"]}"]}.png"}/
             = @playerdata["summonerName4"]
             = @keydata["#{@playerdata["championId4"]}"]
         /チーム2
@@ -101,23 +101,23 @@
             Win
           %ul
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId5"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId5"]}"]}.png"}/
             = @playerdata["summonerName5"]
             = @keydata["#{@playerdata["championId5"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId6"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId6"]}"]}.png"}/
             = @playerdata["summonerName6"]
             = @keydata["#{@playerdata["championId6"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId7"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId7"]}"]}.png"}/
             = @playerdata["summonerName7"]
             = @keydata["#{@playerdata["championId7"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId8"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId8"]}"]}.png"}/
             = @playerdata["summonerName8"]
             = @keydata["#{@playerdata["championId8"]}"]
             %li 
-            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/9.3.1/img/champion/#{@keydata["#{@playerdata["championId9"]}"]}.png"}/
+            %img{alt: "新キャラクター", border: "0", height: "50px", width: "50px", src: "http://ddragon.leagueoflegends.com/cdn/10.4.1/img/champion/#{@keydata["#{@playerdata["championId9"]}"]}.png"}/
             = @playerdata["summonerName9"]
             = @keydata["#{@playerdata["championId9"]}"]
             
